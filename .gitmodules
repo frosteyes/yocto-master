@@ -1,3 +1,6 @@
 [submodule "poky"]
 	path = poky
 	url = git@github.com:frosteyes/poky.git
+[submodule "meta-arm"]
+	path = meta-arm
+	url = git@github.com:frosteyes/meta-arm.git
