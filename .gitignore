@@ -3,3 +3,5 @@ build*
 
 # vscode related files (custom for each person)
 .vscode
+.vscode-ctags.next
+
