@@ -1,0 +1,2 @@
+dummy-fe-app is a placeholder for generating the dependencies for the normal fe-app
+Used for image and SDK generation without fe-app, but with all the dependencies
