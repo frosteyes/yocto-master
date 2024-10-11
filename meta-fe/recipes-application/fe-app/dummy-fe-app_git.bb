@@ -23,3 +23,11 @@ do_compile[noexec] = "1"
 do_install () {
     install -Dm 0644 ${S}/info.txt ${D}${datadir}/dummy-fe-app/info.txt
 }
+
+python package_depchains:append() {
+    pn = d.getVar('PN')
+    recommends = d.getVar('RRECOMMENDS:' + pn + '-dev' )
+
+    # Append the recommends to the RDEPENDS, so it end in requires for the RPM
+    d.appendVar('RDEPENDS:' + pn + '-dev', recommends)
+}
