@@ -1,1 +1,1 @@
-DEPENDS += "boost"
+DEPENDS += "boost sqlite3"

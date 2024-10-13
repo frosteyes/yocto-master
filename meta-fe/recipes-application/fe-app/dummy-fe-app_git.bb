@@ -8,6 +8,11 @@ LIC_FILES_CHKSUM = "file://${COMMON_LICENSE_DIR}/Apache-2.0;md5=89aea4e17d99a7ca
 # Access the same dependencies as the normal fe-app.
 require fe-app_dependencies.inc
 
+# sqlite3 needs specific handling, as it package the dev package
+# as libsqlite3-dev and not sqlite3-dev
+DEPENDS:remove = "sqlite3"
+RDEPENDS:${PN}-dev += "libsqlite3-dev"
+
 SRC_URI = "file://${COMMON_LICENSE_DIR}/Apache-2.0 \
            file://info.txt \
           "
@@ -29,5 +34,5 @@ python package_depchains:append() {
     recommends = d.getVar('RRECOMMENDS:' + pn + '-dev' )
 
     # Append the recommends to the RDEPENDS, so it end in requires for the RPM
-    d.appendVar('RDEPENDS:' + pn + '-dev', recommends)
+    d.appendVar('RDEPENDS:' + pn + '-dev', ' ' + recommends)
 }
