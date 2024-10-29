@@ -33,12 +33,6 @@ python __anonymous () {
             # bb.note("Skipping %s" % dep)
             continue
 
-        # Verify a -dev package exist, or skip and warn that it need special handling        
-        recipename = oe.packagedata.recipename(dep + '-dev', d)
-        if not recipename:
-            bb.warn("dummy-package: %s (Skipping DEPENDS: %s - needs customs handling, no %s-dev exist)" % (pn, dep, dep) )
-            continue
-        
         if dep not in rdepends:
             rdepends.append(' ' + dep)
 
