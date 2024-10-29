@@ -11,7 +11,7 @@ require fe-app_dependencies.inc
 # sqlite3 needs specific handling, as it package the dev package
 # as libsqlite3-dev and not sqlite3-dev
 DEPENDS:remove = "sqlite3"
-RDEPENDS:${PN}-dev += "libsqlite3-dev"
+RDEPENDS:${PN} += "libsqlite3"
 
 SRC_URI = "file://${COMMON_LICENSE_DIR}/Apache-2.0 \
            file://info.txt \
@@ -19,20 +19,8 @@ SRC_URI = "file://${COMMON_LICENSE_DIR}/Apache-2.0 \
 S = "${WORKDIR}/sources"
 UNPACKDIR = "${S}"
 
-inherit cmake
-
-do_patch[noexec] = "1"
-do_configure[noexec] = "1"
-do_compile[noexec] = "1"
+inherit cmake dummy-package
 
 do_install () {
     install -Dm 0644 ${S}/info.txt ${D}${datadir}/dummy-fe-app/info.txt
-}
-
-python package_depchains:append() {
-    pn = d.getVar('PN')
-    recommends = d.getVar('RRECOMMENDS:' + pn + '-dev' )
-
-    # Append the recommends to the RDEPENDS, so it end in requires for the RPM
-    d.appendVar('RDEPENDS:' + pn + '-dev', ' ' + recommends)
 }
