@@ -1,0 +1,50 @@
+{
+    "bitbake.pathToBuildFolder": "${workspaceFolder}/build-vs",
+    "bitbake.pathToEnvScript": "${workspaceFolder}/setup.sh",
+    "bitbake.pathToBitbakeFolder": "${workspaceFolder}/bitbake",
+    // Default to not pollute problems tab.
+    // See https://github.com/yoctoproject/vscode-bitbake/blob/staging/TROUBLESHOOTING.md#trade-offs-on-diagnostics
+    "bitbake.disableEmbeddedLanguagesFiles": true,
+    // Ignore build folders
+    "files.watcherExclude": {
+        "**/build*": true
+    },
+    "search.exclude": {
+        "**/build*": true
+    },
+    "C_Cpp.files.exclude": {
+        "**/build*": true
+    },
+    "python.analysis.exclude": [
+        "**/build*"
+    ],
+    "git.repositoryScanIgnoredFolders": [
+        "**/build*"
+    ],
+    // Python setup
+    "python.autoComplete.extraPaths": [
+        "${workspaceFolder}/bitbake/lib",
+        "${workspaceFolder}/core/meta/lib",
+        "${workspaceFolder}/meta/lib"
+    ],
+    "python.analysis.extraPaths": [
+        "${workspaceFolder}/bitbake/lib",
+        "${workspaceFolder}/core/meta/lib",
+        "${workspaceFolder}/meta/lib"
+    ],
+    "files.associations": {
+        "*.conf": "bitbake",
+        "*.inc": "bitbake"
+    },
+    // Limit Bash-IDE plugin to only scan root or meta-skywatch
+    "bashIde.globPattern": "*@(.sh|.bash|.command)|meta-skywatch/*@(.sh|.bash|.command)",
+    // POSIX defines a file with terminiating newline. Add when saving
+    // if needed.
+    "files.insertFinalNewline": true,
+    "files.trimTrailingWhitespace": true,
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "prettier.printWidth": 80,
+        "prettier.proseWrap": "always"
+    }
+}

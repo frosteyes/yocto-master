@@ -1,0 +1,48 @@
+{
+    // For format details, see https://aka.ms/devcontainer.json
+    // For config options, see the README at:
+    // https://github.com/microsoft/vscode-dev-containers
+    "name": "vs-yocto-dev",
+    "build": {
+        "dockerfile": "devcontainer.Dockerfile",
+        "target": "vs-yocto-dev",        
+        "args": {
+            "UNAME": "vs"
+        }
+    },
+    "runArgs": [
+        "--hostname=vs-yocto-dev",
+        "--name=vs-yocto-dev"
+    ],
+    "customizations": {
+        "vscode": {
+            // Set *default* container specific settings.json values on container create.
+            "settings": {
+                "terminal.integrated.shell.linux": "/bin/bash"
+            },
+            // Add the IDs of extensions you want installed when the container is created.
+            "extensions": [
+                "donjayamanne.python-extension-pack",
+                "mads-hartmann.bash-ide-vscode",
+                "ms-azuretools.vscode-docker",
+                "ms-python.black-formatter",
+                "ms-python.python",
+                "plorefice.devicetree",
+                "timonwong.shellcheck",
+                "yocto-project.yocto-bitbake",
+                "esbenp.prettier-vscode"
+            ]
+        }
+    },
+    "remoteUser": "vs",
+    // Place workspace in vs home instead of /workspace
+    "workspaceMount": "source=${localWorkspaceFolder},target=/home/vs/workspace,type=bind,consistency=cached",
+    "workspaceFolder": "/home/vs/workspace",
+    // Please update with yocto cache mounts
+    "mounts": [
+        "source=${localEnv:HOME}/.ssh,target=/home/vs/.ssh,type=bind",
+        "source=${localEnv:HOME}/.gitconfig,target=/home/vs/.gitconfig,type=bind"
+    ],
+    // Load /etc/profile and ~/.profile
+    "userEnvProbe": "loginShell"
+}
